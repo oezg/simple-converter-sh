@@ -1,19 +1,13 @@
 #!/usr/bin/env bash
 
-echo "Enter a definition:"
-read -a user_input
+definition='^[a-z]+_to_[a-z]+$'
+constant='^-?[0-9]+(\.[0-9]+)?$'
 
-template_definition='^[a-z]+_to_[a-z]+$'
-template_constant='^-?[0-9]+(\.[0-9]+)?$'
+echo 'Enter a definition:'
+read -a input
 
-if [ ${#user_input[@]} -ne 2 ]; then
-    echo The definition is incorrect!
-elif [[ ${user_input[0]} =~ $template_definition ]]; then
-    if [[ ${user_input[1]} =~ $template_constant ]]; then
-        echo The definition is correct!
-    else 
-        echo The definition is incorrect!
-    fi
+if [ ${#input[@]} -eq 2 ] && [[ ${input[0]} =~ $definition ]] && [[ ${input[1]} =~ $constant ]]; then
+    echo The definition is correct!
 else
     echo The definition is incorrect!
 fi
